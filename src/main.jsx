@@ -9,6 +9,7 @@ import Home from './Pages/Home/Home.jsx';
 import About from './Pages/About/About.jsx';
 import Career from './Pages/Career/Carrer.jsx';
 import Category from './Pages/Category.jsx/Category.jsx';
+import CategoryNews from './Components/CategoryNews/CategoryNews.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,12 +17,13 @@ const router = createBrowserRouter([
     Component: Root,
     children:[
       {
-        index:true,
+        path:"",
         Component: Home,
       },
       {
         path:"/category/:id",
-        Component: Category
+        Component: CategoryNews,
+        loader: () => fetch("/news.json")
       },
       {
         path: "/about",

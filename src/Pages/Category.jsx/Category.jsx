@@ -8,10 +8,10 @@ const Category = () => {
     console.log(categories)
     return (
         <div>
-            <h1 className='font-bold'>All Categories</h1>
+            <h1 className='font-bold'>All Categories ({categories.length})</h1>
             <div className="grid grid-cols-1 mt-5 gap-3">
                 {
-                    categories.map(category => <NavLink className={"btn bg-base-100 hover:bg-base-300"} key={category.id}>{category.name}</NavLink>)
+                    categories.map(category => <NavLink to={`/category/${category.id}`} className={"btn bg-base-100 hover:bg-base-300 category font-semibold text-accent"} key={category.id}>{category.name}</NavLink>)
                 }
             </div>
         </div>

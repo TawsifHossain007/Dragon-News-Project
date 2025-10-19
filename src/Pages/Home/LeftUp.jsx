@@ -3,7 +3,7 @@ import Category from '../Category.jsx/Category';
 
 const LeftUp = () => {
     return (
-        <div>
+        <div className='mr-0 md:mr-5'>
             <Suspense fallback={<span className="loading loading-bars loading-xl"></span>}>  
                 <Category></Category>
             </Suspense>

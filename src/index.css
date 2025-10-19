@@ -11,3 +11,8 @@
   --color-base-300: #e7e7e7;
   --color-accent: #706f6f;
 }
+
+ a.active{
+  @apply bg-base-300
+  text-black
+}
