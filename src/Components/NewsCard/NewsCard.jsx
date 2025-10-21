@@ -61,7 +61,7 @@ const NewsCard = ({ news }) => {
         <p className="text-gray-600 text-sm">
           {details.slice(0, 200)}...
           <Link
-            to={`/news/${id}`}
+            to={`/news-details/${id}`}
             className="text-primary font-semibold hover:underline ml-1"
           >
             Read More

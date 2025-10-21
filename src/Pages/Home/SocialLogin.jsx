@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const SocialLogin = () => {
   return (
@@ -6,7 +7,7 @@ const SocialLogin = () => {
       <h2 className="font-bold">Login With</h2>
       <div className="flex flex-col gap-3 mt-5">
         {/* Google */}
-        <button className="btn bg-white text-black border-[#e5e5e5]">
+        <Link to={"/auth/login"} className="btn bg-white text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="16"
@@ -35,9 +36,9 @@ const SocialLogin = () => {
             </g>
           </svg>
           Login with Google
-        </button>
+        </Link>
         {/* GitHub */}
-        <button className="btn bg-black text-white border-black">
+        <Link to={"/auth/login"} className="btn bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="16"
@@ -51,7 +52,7 @@ const SocialLogin = () => {
             ></path>
           </svg>
           Login with GitHub
-        </button>
+        </Link>
       </div>
     </div>
   );

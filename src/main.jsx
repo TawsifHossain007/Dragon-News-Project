@@ -10,6 +10,12 @@ import About from './Pages/About/About.jsx';
 import Career from './Pages/Career/Carrer.jsx';
 import Category from './Pages/Category.jsx/Category.jsx';
 import CategoryNews from './Components/CategoryNews/CategoryNews.jsx';
+import Login from './Components/Login/Login.jsx';
+import Register from './Components/Register/Register.jsx';
+import AuthRoot from './Layouts/AuthRoot.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
+import NewsDetails from './Pages/NewsDetails/NewsDetails.jsx';
+import PrivateRoutes from './Provider/PrivateRoutes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,11 +41,38 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path:"/auth",
+    Component: AuthRoot,
+    children: [
+      {
+        path:"/auth/login",
+        Component: Login
+      },
+      {
+        path:"/auth/register",
+        Component: Register
+      }
+    ]
+  },
+  {
+    path:"/news-details/:id",
+    element: <PrivateRoutes>
+       <NewsDetails></NewsDetails>
+    </PrivateRoutes>,
+    loader: () => fetch("/news.json")
+  },
+  {
+    path:"/*",
+    element:<div>404 Not Found</div>
+  }
 ]);
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-     <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
