@@ -1,5 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
+import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -20,6 +26,42 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+const handleForgetPassword = (email) => {
+  if (!email) {
+    alert("Please enter your email address first.");
+    return;
+  }
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => alert("Password reset email sent! Check your inbox."))
+    .catch((err) => alert(err.message));
+};
+
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log(result);
+        setUser(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        console.log(result);
+        setUser(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const signIn = (email, password) => {
     setLoading(true);
@@ -28,7 +70,7 @@ const AuthProvider = ({ children }) => {
 
   const updateUser = (updateData) => {
     return updateProfile(auth.currentUser, updateData);
-  }
+  };
 
   const logout = () => {
     return signOut(auth);
@@ -52,7 +94,10 @@ const AuthProvider = ({ children }) => {
     signIn,
     loading,
     setLoading,
-    updateUser
+    updateUser,
+    handleGoogleSignIn,
+    handleGithubSignIn,
+    handleForgetPassword
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;

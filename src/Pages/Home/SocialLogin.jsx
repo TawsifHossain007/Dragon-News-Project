@@ -1,13 +1,18 @@
-import React from "react";
+
+import React, { use } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const SocialLogin = () => {
+
+  const {handleGoogleSignIn,handleGithubSignIn}  = use(AuthContext)
+
   return (
     <div className="">
       <h2 className="font-bold">Login With</h2>
       <div className="flex flex-col gap-3 mt-5">
         {/* Google */}
-        <Link to={"/auth/login"} className="btn bg-white text-black border-[#e5e5e5]">
+        <Link onClick={handleGoogleSignIn}  className="btn bg-white text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="16"
@@ -38,7 +43,7 @@ const SocialLogin = () => {
           Login with Google
         </Link>
         {/* GitHub */}
-        <Link to={"/auth/login"} className="btn bg-black text-white border-black">
+        <Link onClick={handleGithubSignIn} className="btn bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="16"

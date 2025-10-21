@@ -58,7 +58,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex gap-2">
         {
-          user? <img src={user.photoURL} alt="" /> : <CircleUserRound size={40}></CircleUserRound>
+          user? <img className="h-[40px] w-[40px] rounded-full" src={user.photoURL} alt="" /> : <CircleUserRound size={40}></CircleUserRound>
         }
         
         {
